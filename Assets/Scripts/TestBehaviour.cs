@@ -51,7 +51,7 @@ public class TestBehaviour : MonoBehaviour
         for (int i = 0; i < len; i++)
         {
             sb.Append(string.Format(" {0:x2}", buf[i]));
-            if (i == 0x10) sb.Append("\n");
+            if (((i+1)&0xF) == 0) sb.Append("\n");
         }
         Debug.Log(sb.ToString());
 
