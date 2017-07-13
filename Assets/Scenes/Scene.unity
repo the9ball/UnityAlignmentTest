@@ -1151,7 +1151,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 153d10fa9689b4c48a0fb1d718f607a2, type: 2}
-  m_RootGameObject: {fileID: 1373262230}
   m_IsPrefabParent: 0
 --- !u!1 &1533814340
 GameObject:
@@ -1475,13 +1474,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1782775291}
   m_TextComponent: {fileID: 2141643493}
   m_Placeholder: {fileID: 618553151}
-  m_ContentType: 3
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 2
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 2
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:

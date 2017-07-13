@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Linq;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +21,7 @@ public class TestBehaviour : MonoBehaviour
     public void Awake()
     {
         _paddingSize.text = "1";
-        _source.text = "1234.5678";
+        _source.text = 0x1122334455667788ul.ToString();
     }
 
     public unsafe void Do()
@@ -28,16 +30,16 @@ public class TestBehaviour : MonoBehaviour
 
         var paddingSize = int.Parse(_paddingSize.text);
 
-        double value = double.Parse(_source.text);
+        ulong value = ulong.Parse(_source.text);
 
         Debug.LogFormat("padding:{0}\nvalue:{1}", paddingSize, value);
 
-        var len = paddingSize + sizeof(double);
+        var len = paddingSize + sizeof(ulong);
         var buf = new byte[len];
         fixed (byte* head = buf)
         {
             var p = head + paddingSize;
-            *((double*)p) = value;
+            *((ulong*)p) = value;
         }
 
         Debug.Log("Serialize Done");
@@ -55,16 +57,18 @@ public class TestBehaviour : MonoBehaviour
         }
         Debug.Log(sb.ToString());
 
-        double destination;
+        ulong destination;
         fixed (byte* head = buf)
         {
             var p = head + paddingSize;
-            destination = *((double*)p);
+            destination = *((ulong*)p);
         }
         _destination.text = destination.ToString();
 
         Debug.Log("Deserialize Done");
         Debug.LogFormat("result:{0}", destination);
+
+        Debug.Log(string.Join(" ", BitConverter.GetBytes(destination).Select(x => x.ToString("X2")).ToArray()));
 
         var succeeded = value == destination;
         _result.text = succeeded ? "Success" : "Fail";
