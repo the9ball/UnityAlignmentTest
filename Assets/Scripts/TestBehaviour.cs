@@ -24,6 +24,8 @@ public class TestBehaviour : MonoBehaviour
 
     public unsafe void Do()
     {
+        _result.text = "Start"; // 途中で死んだ時用
+
         var paddingSize = int.Parse(_paddingSize.text);
 
         double value = double.Parse(_source.text);
